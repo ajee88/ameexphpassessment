@@ -10,7 +10,7 @@
 	<body>
 		<div class="container">
 			<div class="inner-container">
-				<?php include "secure/registerForm.php"; ?>
+				<?php include "http://irwinner.in/ameexphpassessment/secure/registerForm.php"; ?>
 			</div>
 		</div>
 	</body>

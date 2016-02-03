@@ -1,0 +1,67 @@
+------------------------------------------------------------------------------
+General Requirements
+------------------------------------------------------------------------------
+Create a User Registration Form.
+Form should contain 2 sections with the following fields
+	1. Account Information
+		(1)	User Name
+		(2)	Password
+		(3)	Confirm Password
+	2. Vehicle Information
+		(1)	Make
+		(2)	Model
+		(3)	Year
+The Vehicle Data is already stored in the Database. Refer "DB Structure & Configuration" below for further details.
+All the 3 Fields under Vehicle Information are Dropdowns (HTML select fields) and should be updated as required using jQuery AJAX.
+The options for Make should be populated from the Database on Page Load.
+On selecting/changing the Make option, the options for Model dropdown should be populated based on the selected Make.
+On selecting/changing the Model option, the options for Year dropdown should be populated based on selected Make & Model.
+All fields must be validated on Client Side & Server Side.
+User Name must be validated against database & Duplicate User Names should not be allowed.
+
+
+------------------------------------------------------------------------------
+DB Structure & Configuration
+------------------------------------------------------------------------------
+Use only the tables provided below for processing. The Tables & Columns are
+	1. ameex_user
+		(1)	uid
+		(2)	name
+		(3)	pass
+	2. ameex_user_vehicle
+		(1)	uid
+		(2)	make
+		(3)	model
+		(4)	year
+	3. ameex_vehicles (do not insert or update)
+		(1) make
+		(2) model
+		(3) min_year
+		(4) max_year
+The column uid in table ameex_user is the primary key and will be incremented automatically.
+Do not insert values for uid in the table ameex_user is insert query. uid should be used only when updating this table.
+Whereas uid in ameex_user_vehicle is the foreign key from the table ameex_user. Hence uid should always be used in where clause when inserting values to this table.
+The Database is already connected. Always include "http://irwinner.in/ameexphpassessment/secure/dbconfig.php" in the files you will use dbquery.
+
+
+------------------------------------------------------------------------------
+PHP Programming
+------------------------------------------------------------------------------
+Implement the following Interfaces (Interface -> Class)
+	1. formSelectInterface		-> formSelect
+	2. userInterface			-> user
+	3. userLocationInterface	-> userLocation
+Implement the classes in the file interface.php (ameexphpassessment/logesh/interface.php)
+The <select> tag should be built using the function formSelect->render. Raw <select> tag should not be present in any other files.
+On each AJAX call, the entire <select> item should be replaced.
+Once the User Registration Form passes validation and is submitted, SESSION should be created and uid should be stored in SESSION.
+If SESSION is set, 
+	Display the User Profile Information (along with UID and User Name) and Provide a button to allow Editing.
+	On clicking Edit button, a form should open to allow Editing the details. 
+	The values in the form should be built using an instance of the classes user and userProfile.
+If SESSION is not set,
+	Display Registration Form
+	Provide a login button to access Login Form
+	Login Form should contain 2 form items (User Name & Password).
+	On successful validation, SESSION should be set
+When user is logged in provide a Logout button/link and destroy the SESSION when clicked.

@@ -1,0 +1,59 @@
+------------------------------------------------------------------------------
+General Requirements
+------------------------------------------------------------------------------
+Create a User Registration Form.
+Form should contain 2 sections with the following fields
+	1. Account Information
+		(i) 	User Name
+		(ii)	Password
+		(iii)	Confirm Password
+	2. Profile Information
+		(i)		First Name
+		(ii)	Last Name
+		(iii)	Phone Number
+		(iv)	Email Address
+All fields must be validated on Client Side & Server Side. Especially Phone Number & Email Address.
+Store only the encrypted Passwords in Database using an encryption method.
+User Name must be validated against database & Duplicate User Names should not be allowed
+
+
+------------------------------------------------------------------------------
+DB Structure & Configuration
+------------------------------------------------------------------------------
+Use only the tables provided below for processing. The Tables & Columns are
+	1. ameex_user
+		(i)		uid
+		(ii)	name
+		(iii)	pass
+	2. ameex_user_profile
+		(i)		uid
+		(ii)	first_name
+		(iii)	last_name
+		(iv)	mail
+		(v)		phone
+The column uid in table ameex_user is the primary key and will be incremented automatically.
+Do not insert values for uid in the table ameex_user is insert query. uid should be used only when updating this table.
+Whereas uid in ameex_user_profile is the foreign key from the table ameex_user. Hence uid should always be used in where clause when inserting values to this table.
+The Database is already connected. Always include "http://irwinner.in/ameexphpassessment/secure/dbconfig.php" in the files you will use dbquery.
+
+
+------------------------------------------------------------------------------
+PHP Programming
+------------------------------------------------------------------------------
+Implement the following Interfaces (Interface -> Class)
+	1. formItemInterface	-> formItem
+	2. userInterface		-> user
+	3. userProfileInterface	-> userProfile
+Implement the classes in the file interface.php (ameexphpassessment/babu/interface.php)
+The input elements in the form should be rendered using the formItem->render function only. <input> tag should not be hardcoded in any other files.
+Once the User Registration Form passes validation and is submitted, SESSION should be created and uid should be stored in SESSION.
+If SESSION is set, 
+	Display the User Profile Information (along with UID and User Name) and Provide a button to allow Editing.
+	On clicking Edit button, a form should open to allow Editing the details. 
+	The values in the form should be built using an instance of the classes user and userProfile.
+If SESSION is not set,
+	Display Registration Form
+	Provide a login button to access Login Form
+	Login Form should contain 2 form items (User Name & Password).
+	On successful validation, SESSION should be set
+When user is logged in provide a Logout button/link and destroy the SESSION when clicked.
