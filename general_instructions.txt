@@ -1,0 +1,37 @@
+Get maximum help only from the Internet. Avoid seeking help from friends and seniors.
+
+Don't get to know what your friend's task is, even though you already have their instructions with you.
+
+In the next level of assessment, you will be asked to integrate the 6 tasks into a single application. So don't overdo your job now. If you do, it will be a negative remark.
+
+Try to write flexible and robust code as much as possible.
+
+Name all the files, folders, classes, variables, functions, etc elegantly. Eg. Avoid names such as $a, class x, etc.
+
+Provide Comments wherever necessary.
+
+Create your files/directories only within the directory with your name. Respect the privacy of others.
+
+Strictly do not create files/folders in the root path (i.e. /ameexphpassessment/) or in other user's folders.
+
+Use the Bootstrap Framework (already included in your index.php) to the maximum extent possible. 
+
+Do not create/write your own CSS files.
+
+Place all javascript code in a seperate file and include it.
+
+Additional points for building a Single Page Application.
+
+Since you are working in a shared database, respect other's data. Update/Delete only the rows inserted by you. Never try drop or delete table queries.
+
+
+
+-----------------------------------------------------------------------------------
+Rating/Assessment Pattern
+-----------------------------------------------------------------------------------
+1. Output & Presentation - 30
+2. Adherance to Instructions - 20
+3. Coding Standard - 20
+4. Code Integration - 20 
+5. CoTrainee Assessment - 10
+-----------------------------------------------------------------------------------
