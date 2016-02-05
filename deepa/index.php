@@ -1,4 +1,4 @@
-<?php require "http://irwinner.in/ameexphpassessment/secure/dbconfig.php"; ?>
+<?php require "../dbconfig.php"; ?>
 <!DOCTYPE HTML>
 <html>
 	<head>

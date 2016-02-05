@@ -26,7 +26,7 @@ Use only the tables provided below for processing. The Tables & Columns are
 The column uid in table ameex_user is the primary key and will be incremented automatically.
 Do not insert values for uid in the table ameex_user is insert query. uid should be used only when updating this table.
 Whereas uid in ameex_user_profile is the foreign key from the table ameex_user. Hence uid should always be used in where clause when inserting values to this table.
-The Database is already connected. Always include "http://irwinner.in/ameexphpassessment/secure/dbconfig.php" in the files you will use dbquery.
+The Database is already connected. Always include "/ameexphpassessment/dbconfig.php" in the files you will use dbquery.
 
 
 ------------------------------------------------------------------------------
