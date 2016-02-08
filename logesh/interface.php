@@ -7,12 +7,11 @@ interface formSelectInterface{
 	/*
 	 * Variables to be used in the implementing Class
 	 * 1.	$name			- The name(machine readable) of the form element. Eg.: "userName", "cnfPassword", etc.
-	 * 2.	$class		- The class name to be provided for form element. Useful if jQuery functions / CSS is to handled for the element
-	 * 3.	$label		-	The label(Human Readable) to be provided for the Form Element. Eg.: "User Name", "Confirm Password", etc.	 *
-	 * 4.	$options	- An array of options that will go under the Select element.  
+	 * 2.	$class		    - The class name to be provided for form element. Useful if jQuery functions / CSS is to handled for the element
+	 * 3.	$label		    -	The label(Human Readable) to be provided for the Form Element. Eg.: "User Name", "Confirm Password", etc.	 *
+	 * 4.	$options	    - An array of options that will go under the Select element.  
 	 */
 	 
-	
 	/*
 	 *	This function will be used to render option by forming HTML for each of the options in the Instance. 
 	 * 	Will be called within a foreach loop in the function render().
@@ -76,3 +75,4 @@ interface userVehicleInterface {
 	public function load($uid = 0);
 }
 ?>
+
