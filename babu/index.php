@@ -134,6 +134,5 @@ if(!$Reg_result)
 mysqli_close($cn); //close the db connection
 }
 ?>
-
 </body>
 </html>
