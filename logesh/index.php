@@ -18,51 +18,39 @@ session_start();
 		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>				
         <script type="text/javascript" src="clientvalidation.js"></script>        <!--included client validation js file -->
 	</head>
-  <!--this script shows the div tag of login and option id of login and interface class and hide the div class=container -->
-    <script>
-        
-        $(document).ready(function(){
-        $("#login").click(function(){
-        $(".container").hide();    
-        $("#login_div").show();
-        $("#option").show();
-    });
-       });   
-    </script>
+  
     <!--register form , login and interface pages are included here -->
-	<body >
+	<script>
+
+  function login()
+  {
+  header("Location:login.php");
+  }
+
+  </script>
+
+  <body >
         <form name="f1" method="post" enctype="multipart/form-data" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
-            <h1><center>HIGH PERFORMANCE PRODUCT CONFRIGURATOR</center></h1>
+           
 		<div class="container">
 			<div class="inner-container offset1 span8 pull-left">
+              <h1>Account Information </h1>
 				      	<table class ="table">
-                               	<caption><CENTER>LOGIN</CENTER></caption>		
                                  <tr><th class="text-primary"><label for>Username:</label></th><td><input type ="text" id="username" name="username" value="" placeholder="Username" onfocus="validatefocus()" onblur="validateForm()"><p id="pid1"></p></td></tr>
                                  <tr><th class="text-primary"><label for>Password:</label></th><td> <input type ="password" id="password" name="pas" placeholder="Pas"  onfocus="validatefocus()" onblur="validateForm()"><p id="pid2"></p></td></tr>
                                  <tr><th class="text-primary"><label for>Confirm Password:</label></th><td><input type ="password" id="confirm_password" name="con" value="" placeholder="Confirm Password"  onfocus="validatefocus()" onblur="validateForm()"><p id="pid3"></p></td></tr>
                                  <tr><td><center><input type="submit" class ="btn" value="submit" name="submit_name"></center></td>
-                                              <td><center><input type="button" class ="btn" value="login" id="login" name="login" ></center></td>
+                                        <td><a  class ="btn" href = "login.php" > login </a><td></center></td>
                                  </tr>
                                 </table>  
-                    </div>             
-			    
+      </div>    
+      <div >
+        <h2>Vehicle information</h3>
+          <?php include 'select.php'; ?> 
+      </div>         
+    </div>
 
-   </div>
-
-
-        <div id ="login_div" width="50%" style="display:none" float:"left">
-               <div class="offset1 span8 pull-left">
-                <tr><th class="text-primary"><label for>Username:</label></th><td><input type ="text" id="username" name="username" value="" placeholder="Username" onfocus="validatefocus()" onblur="validateForm()"><p id="pid1"></p></td></tr>
-                                 <tr><th class="text-primary"><label for>Password:</label></th><td> <input type ="password" id="password" name="pas" placeholder="Password"  onfocus="validatefocus()" onblur="validateForm()"><p id="pid2"></p></td></tr>
-                                  <input type ="submit" name="logout" value ="logout" class ="btn-success" onclick="header("Location:index.php")"> 
-                               </div class= "table"> 
-                      <table>
-                        <div id ="option" style="display:none" float:"right">
-                         <?php include 'select.php'; ?>  <!-- select page has included here-->
-
-                       </div>          
-              </div>
-        </div>
+       
     </form>
 	</body>
    </html>

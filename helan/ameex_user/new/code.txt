@@ -1,0 +1,5 @@
+ image name:<input type="text" name="name" id="text1" value="<?php echo $iname?>"><br>
+       user name: <input type="text" name="name" id="text2" value="<?php echo $name?>"><br>
+       uri:           <input type="text" name="name" id="text3" value="<?php echo $uri?>"><br>
+       size:      <input type="text" name="name" id="text4" value="<?php echo $size?>"><br>
+       type:      <input type="text" name="name" id="text5" value="<?php echo $type?>"><br>
