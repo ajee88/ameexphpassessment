@@ -4,9 +4,15 @@ require "../dbconfig.php";
 $_SESSION['cn']=$cn;
 //echo $s_id;
 ?>
+<title>Babu | PHP Assessment</title>
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</title>
 <?php
 //echo $_SESSION['cn'];
-   	interface formItemInterface 
+   	interface formItemInterface
 	{
 	public function renderLabel();
 	public function render($a,$b,$c,$d,$e,$f,$g,$h,$i,$j,$k,$l,$m,$n,$o,$p,$q,$r,$s,$t,$u,$v,$w,$x,$y,$z,$A,$B,$C,$D,$E,$F,$G);
