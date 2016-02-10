@@ -14,7 +14,6 @@ interface userInterface {
 	
 	/*
 	 * The purpose of this function is the save the user information in the database
-	 * The SQL query should contain $this->uid in WHERE clause.
 	 */
 	public function save();
 	
@@ -43,7 +42,6 @@ interface userProfileInterface {
 	
 	/*
 	 * The purpose of this function is the save the user profile information in the database
-	 * The SQL query should contain $this->uid in WHERE clause.
 	 */
 	public function save();
 	
