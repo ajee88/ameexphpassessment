@@ -1,5 +1,8 @@
 <html>
-
+<?php include 'design.php';
+ini_set('error_reporting', E_ALL|E_STRICT);
+ini_set('display_errors', 1);
+?>
 <head>
 <style type="text/css">
  input{
@@ -16,7 +19,10 @@
 
 
 </head>
-
+<?php
+session_start();
+require "dbconfig.php";
+?>
 <body>
 <h1>LOGIN<h1>
 <form method='post'>
@@ -25,43 +31,46 @@
 <tr><td>Password:</td><td><input type='password' name='pwd' size="30" placeholder="Password"/></td></tr>
 <tr><th colspan='5'><input type='submit' name='submit' value='SUBMIT'/><input type='reset' name='reset' value='RESET'/></th></tr>
 </table>
-
 </form>
-<?php
 
-session_start();
-require "dbconfig.php"; 
+<?php
 
 if(isset($_POST['submit']))
 {
 
  $name=$_POST['name'];
+
  $pwd=$_POST['pwd'];
+
  if($name!=''&&$pwd!='')
  {
-   $query=mysql_query("select * from ameex_user where name='".$name."' and pass='".$pwd."'") or die(mysql_error());
-   $res=mysql_fetch_row($query);
-   if($res)
+   $sql=mysqli_query("select * from ameex_user where name='".$name."' and pass='".$pwd."'") or die(mysql_error());
+ $result=mysqli_query($cn,$sql) or  die("Error in Selecting " . mysqli_error($cn));
+  // $res=mysql_fetch_row($query);
+   if($result)
    {
     $_SESSION['name']=$name;
 
+ $get_sql_id = "select uid from ameex_user where name='$name'";
+  //getting user uid
+                $res = mysqli_query($cn,$get_sql_id) or die("Error in getting uid from login" . mysqli_error($cn));
+                $uid=mysqli_fetch_array($res);
+ $userid=$uid['uid']; 
+$_SESSION['userid']=$userid;
+    //$_SESSION['fname']=$firstname ;
 
-    $_SESSION['fname']=$firstname ;
-
-    header('location:profilemap.php');
+    header('location:index.php');
 
    }
-   else
-   {
-    echo'You entered username or password is incorrect';
-   }
- }
- else
- {
-  echo'Enter both username and password';
- }
+
 }
+
+}
+
+
 ?>
-<div> <button type="button" onclick="window.location.href='http://localhost/project/files/loginm.php'">PROFILE VIEW</button></div>
+
 </body>
+<?php 
+mysqli_close($cn); ?>
 </html>

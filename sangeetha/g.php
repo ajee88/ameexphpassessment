@@ -82,6 +82,7 @@ if($_POST){
         }
         google.maps.event.addDomListener(window, 'load', init_map);
     </script>
+
  
     <?php
  
@@ -92,19 +93,19 @@ if($_POST){
 }
 ?>
  
-<div id='address-examples'>
-    <div>Address examples:</div>
-    <div>1. G/F Makati Cinema Square, Pasong Tamo, Makati City</div>
-    <div>2. 80 E.Rodriguez Jr. Ave. Libis Quezon City</div>
-<div>3. 6th Floor, IIFL Tower, 143, MGR Road, Perungudi, Chennai, Tamil Nadu 600096</div>
-    <div>2. 80 E.Rodriguez Jr. Ave. Libis Quezon City</div>
-</div>
+
  
 <!-- enter any address -->
 <form action="" method="post">
-
+<div id="main">
+<?php echo'WELCOME :'. $_SESSION['uname'].'<br>'; ?>
+<br><br>
+<input type="button" value="PROFILE VIEW" onclick="window.location.href='http://localhost/map/profilemap.php'" /><br><br>
     <input type='text' name='address'   value="<?php echo $geo; ?>" placeholder='Enter any address here' />
-    <input type='submit' value='Geocode!' />
+    <input type='submit' value='SEARCH' /></div>
+<div id="second">
+<?php include 'update.php'; ?>
+</div>
 </form>
  
 <?php
@@ -156,6 +157,6 @@ function geocode($address){
     }
 }
 ?>
- 
+
 </body>
 </html>
