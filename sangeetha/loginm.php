@@ -1,5 +1,5 @@
 <html>
-<?php include 'design.php';?>
+
 <head>
 <style type="text/css">
  input{
@@ -28,17 +28,18 @@
 
 </form>
 <?php
+
 session_start();
-$_SESSION['id']=0;
+require "dbconfig.php"; 
+
 if(isset($_POST['submit']))
 {
- mysql_connect('localhost','root','ameex') or die(mysql_error());
- mysql_select_db('sangeetha') or die(mysql_error());
+
  $name=$_POST['name'];
  $pwd=$_POST['pwd'];
  if($name!=''&&$pwd!='')
  {
-   $query=mysql_query("select * from ameex_user where name='".$name."' and passwd='".$pwd."'") or die(mysql_error());
+   $query=mysql_query("select * from ameex_user where name='".$name."' and pass='".$pwd."'") or die(mysql_error());
    $res=mysql_fetch_row($query);
    if($res)
    {
