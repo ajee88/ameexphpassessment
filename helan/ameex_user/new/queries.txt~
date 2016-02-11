@@ -1,0 +1,28 @@
+// table ameex_user
+
+create table ameex_user(uid int NOT NULL AUTO_INCREMENT,name varchar(255) NOT NULL,pass varchar(255) NOT NULL,PRIMARY KEY (uid));
+
+
+
+//able ameex_user_avatar
+
+ create table ameex_user_avatar(uid int NOT NULL,iname varchar(255) NOT NULL,uri varchar(255) NOT NULL,size varchar(255) NOT NULL,type varchar(255) NOT NULL,FOREIGN KEY (uid) REFERENCES ameex_user(uid));
+
+
+create database ases
+CREATE TABLE  ameex_user(uid INT PRIMARY KEY AUTO_INCREMENT,name VARCHAR(30) UNIQUE,pass VARCHAR(50));
+
+CREATE TABLE check(name varchar(20),pass varchar(20));
+
+//image function
+    public function image($uid)
+                  {
+	            $sqlim="SELECT * from ameex_user_avatar WHERE uid='$uid'";
+                    $result = mysqli_query($this->db,$sqlim);
+	            $user_data = mysqli_fetch_array($result);
+                    $_SESSION['iname']=$user_data['iname'];
+                    $_SESSION['type']=$user_data['type'];
+                    $_SESSION['size']=$user_data['size'];
+                    $_SESSION['uri']=$user_data['uri'];
+                    
+	           }     

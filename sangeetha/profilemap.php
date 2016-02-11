@@ -1,27 +1,54 @@
+
+     
 <?php
 session_start();
      
 
-include 'design.php';
-          $name=$_SESSION['name'];  
-echo'WELCOME :'. $_SESSION['name'].'<br>';
+
+require "dbconfig.php"; 
+
+          $name=$_SESSION['uname']; 
+$uuid=$_SESSION['user_id']; 
+//echo $uuid; 
+echo'WELCOME :'. $_SESSION['uname'].'<br>';
          
 
-$host="localhost"; // Host name 
-$username="root"; // Mysql username 
-$password="ameex"; // Mysql password 
-$db_name="sangeetha"; // Database name 
-$tbl_name="ameex_loc"; // Table name 
-
 // Connect to server and select database.
-mysql_connect("$host", "$username", "$password")or die("cannot connect"); 
-mysql_select_db("$db_name")or die("cannot select DB");
+  if (!$cn) {
+    die("Connection failed: " . mysqli_connect_error());
+    
+    //$conn->close();
+  }
+  else
+  { 
 
-$sql="SELECT * FROM $tbl_name WHERE name='" . $name . "' ";
-$result=mysql_query($sql);
+ // echo "Connected successfully";
+ 
+  }?>
+<?php
+
+//$sql="SELECT * FROM $tbl_name WHERE name='" . $name . "' ";
+$sql= ("select ameex_user.uid,ameex_user.name,ameex_user_location.street,ameex_user_location.additional,ameex_user_location.city,ameex_user_location.province,ameex_user_location.postal_code,ameex_user_location.country,ameex_user_location.latitude,ameex_user_location.longitude from ameex_user_location RIGHT JOIN ameex_user ON ameex_user.uid = ameex_user_location.uid  WHERE ameex_user.uid='" . $uuid . "'");
+ 
+
+$result=mysqli_query($cn,$sql) or  die("Error in Selecting " . mysqli_error($cn));
+              //  echo json_encode($result);
+	//$data=mysqli_fetch_array($result);
+
+ if($cn->query($sql) === TRUE)
+ {
+    //echo "Login Error" .$sql ."<br>" .$cn->error;
+ }
+ else
+ {
+
+//echo "Login REGISTERED";
+ }
+
+
 ?>
 <html>
-</head>
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,8 +84,9 @@ $result=mysql_query($sql);
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
   </head>
-</head>
+
 <body>
 <form action="" method="POST">
 <table width="400" border="0" cellspacing="1" cellpadding="0">
@@ -68,19 +96,22 @@ $result=mysql_query($sql);
 
 
 <?php
-while($rows=mysql_fetch_array($result)){
+while($data=mysqli_fetch_array($result)){
+
 ?>
- <div class="col-xs-4">
+ <div class="col-xs-4" id ="main">
 <tr>
 
-<td align="center"><strong>NAME:</strong></td><td><input name="name" type="text" id="name" value="<?php echo $rows['name']; ?>"></td></tr>
-<td align="center"><strong>STREET:</strong></td><td><input name="name" type="text" id="name" value="<?php echo $rows['street']; ?>"></td></tr>
-<td align="center"><strong>CITY:</strong></td><td><input name="lastname" type="text" id="lastname" value="<?php echo $rows['city']; ?>"></td></tr>
-<td align="center"><strong>ZIP CODE:</strong></td><td><input name="uname" type="text" id="uname" value="<?php echo $rows['zip']; ?>"></td></tr>
-<td align="center"><strong>STATE:</strong></td><td><input name="pass" type="text" id="pass" value="<?php echo $rows['state']; ?>"></td></tr>
-<td align="center"><strong>COUNTRY:</strong></td><td><input name="email" type="text" id="email" value="<?php echo $rows['country']; ?>"></td></tr>
-<td align="center"><strong>LATITUDE:</strong></td><td><input name="d1" type="text" id="d1" value="<?php echo $rows['lat']; ?>"></td></tr>
-<td align="center"><strong>LONGTITUDE:</strong></td><td><input name="d2" type="text" id="d2" value="<?php echo $rows['lng']; ?>"></td>
+<td align="center"><strong>UID:</strong></td><td><input name="name" type="text" id="name" value="<?php echo $data['uid']; ?>"></td></tr>
+<td align="center"><strong>NAME:</strong></td><td><input name="name" type="text" id="name" value="<?php echo $data['name']; ?>"></td></tr>
+<td align="center"><strong>STREET:</strong></td><td><input name="name" type="text" id="name" value="<?php echo $data['street']; ?>"></td></tr>
+<td align="center"><strong>ADDITIONAL STREET:</strong></td><td><input name="name" type="text" id="name" value="<?php echo $data['additional']; ?>"></td></tr>
+<td align="center"><strong>CITY:</strong></td><td><input name="lastname" type="text" id="lastname" value="<?php echo $data['city']; ?>"></td></tr>
+<td align="center"><strong>PROVINCE:</strong></td><td><input name="uname" type="text" id="uname" value="<?php echo $data['province']; ?>"></td></tr>
+<td align="center"><strong>ZIP CODE:</strong></td><td><input name="pass" type="text" id="pass" value="<?php echo $data['postal_code']; ?>"></td></tr>
+<td align="center"><strong>COUNTRY:</strong></td><td><input name="email" type="text" id="email" value="<?php echo $data['country']; ?>"></td></tr>
+<td align="center"><strong>LATITUDE:</strong></td><td><input name="d1" type="text" id="d1" value="<?php echo $data['latitude']; ?>"></td></tr>
+<td align="center"><strong>LONGTITUDE:</strong></td><td><input name="d2" type="text" id="d2" value="<?php echo $data['longitude']; ?>"></td>
 </tr>
 
 
@@ -90,10 +121,10 @@ while($rows=mysql_fetch_array($result)){
 
 </table>
 </div>
-<td align="center"><a href="updatemap.php?id=<?php echo $rows['id']; ?>">update</a></td>
+<td align="center"><a href="updatemap.php?id=<?php echo $data['uid']; ?>">update</a></td>
 <?php
 }
-echo'<a href="signout.php">Signout</a>';
+
 ?>
 
 
