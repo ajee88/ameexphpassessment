@@ -1,39 +1,60 @@
-<?php
-$host="localhost"; // Host name 
-$username="root"; // Mysql username 
-$password="ameex"; // Mysql password 
-$db_name="sangeetha"; // Database name 
-$tbl_name="ameex_loc"; // Table name
 
+<?php
+session_start();
+require "dbconfig.php"; 
 
 
 
 $id=$_POST['id'];
-$n1=$_POST['name'];
-$n2=$_POST['st'];
-$n3=$_POST['ct'];
-$n4=$_POST['zip'];
-$n5=$_POST['stt'];
-$n6=$_POST['cn'];
-$n7=$_POST['l1'];
-$n8=$_POST['l2'];
+$name=$_POST['name'];
+$street=$_POST['strt'];
+$addi=$_POST['st'];
+$city=$_POST['ct'];
+$prov=$_POST['pro'];
+$post=$_POST['zip'];
+$countr=$_POST['cn'];
+$lat=$_POST['l1'];
+$lng=$_POST['l2'];
 
 
 
 // Connect to server and select database.
-mysql_connect("$host", "$username", "$password")or die("cannot connect"); 
-mysql_select_db("$db_name")or die("cannot select DB");
+  if (!$cn) {
+    die("Connection failed: " . mysqli_connect_error());
+    
+    //$conn->close();
+  }
+  else
+  { 
 
-
+ //echo "Connected successfully";
+ 
+  }?>
+<?php
 // update data in mysql database 
-$sql="UPDATE $tbl_name SET name='$n1',street='$n2', city='$n3', zip='$n4', state='$n5', country='$n6', lat='$n7', lng='$n8' WHERE id='$id'";
-$result=mysql_query($sql);
+//$sql="UPDATE  SET id ='$id',name='$n1',street='$n2', city='$n3', zip='$n4', state='$n5', country='$n6', lat='$n7', lng='$n8' WHERE id='$id'";
+
+
+
+
+
+$sql= "UPDATE ameex_user JOIN ameex_user_location ON ameex_user.uid = ameex_user_location.uid SET ameex_user.uid ='$id', ameex_user.name='$name',ameex_user_location.street='$street',ameex_user_location.additional='$addi' ,ameex_user_location.city='$city', ameex_user_location.postal_code='$post', ameex_user_location.province='$prov', ameex_user_location.country='$countr', ameex_user_location.latitude='$lat', ameex_user_location.longitude='$long'  WHERE ameex_user.uid='" . $id . "'";
+$result=mysqli_query($cn,$sql) or  die("Error in Selecting " . mysqli_error($cn));
+//$result=mysql_query($sql);
 // if successfully updated. 
 if($result){
-echo "Successful";
+
+echo "UPDATED PROFILE FOR YOU";
 
 echo "<BR>";
-echo "<a href='loginm.php'>View result</a>";
+echo "<BR>";
+echo "<BR>";
+echo'<a href="signout.php">Signout</a>';
+echo "<BR>";
+include 'profilemap.php';
+
+
+
 }
 
 else {
