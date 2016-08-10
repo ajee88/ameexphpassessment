@@ -10,9 +10,9 @@ Name all the files, folders, classes, variables, functions, etc elegantly. Eg. A
 
 Provide Comments wherever necessary.
 
-Create your files/directories only within the directory with your name. Respect the privacy of others.
+Create your files or directories only within the directory with your team name. Respect the privacy of others.
 
-Strictly do not create files/folders in the root path (i.e. /ameexphpassessment/) or in other user's folders.
+Strictly do not create files or folders in the root path (i.e. /ameexphpassessment/) or in other user's folders.
 
 Use the Bootstrap Framework (already included in your index.php) to the maximum extent possible. 
 
